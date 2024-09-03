@@ -1,25 +1,8 @@
+import 'package:dominos_returant_ui_app2/model/component.dart';
 import 'package:flutter/material.dart';
 
 class Page2 extends StatelessWidget {
-  List<dynamic> menu = [
-    {"name": "Other"},
-    {"name": "Pizza"},
-    {"name": "Cheken"},
-    {"name": "Rice"},
-    {"name": "Juice"},
-    {"name": "Other"},
-    {"name": "Rice"},
-    {"name": "Juice"},
-    {"name": "Other"},
-  ];
-
-  ///
-  List<dynamic> image = [
-    {"images": "images/image3.jpg"},
-    // {"images": "images/image4.jpg"},
-    // {"images": "images/image4.jpg"},
-    // {"images": "images/image4.jpg"},
-  ];
+  Component comp = Component();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,17 +12,23 @@ class Page2 extends StatelessWidget {
         children: [
           //image
           Container(
-            //bachground
-            color: const Color.fromARGB(255, 12, 64, 106),
-            height: 320,
-            width: MediaQuery.of(context).size.width,
-            // decoration: BoxDecoration(
-            //     image: DecorationImage(image: AssetImage("images/image3.jpg"))),
-            child: Image.asset(
-              "images/image3.jpg",
-              fit: BoxFit.fill,
-            ),
-          ),
+              //bachground
+              height: 320,
+              width: MediaQuery.of(context).size.width,
+              padding: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                  image: DecorationImage(image: AssetImage("images/dom1.jpg"))),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 20),
+                  Icon(
+                    Icons.keyboard_arrow_left,
+                    size: 40,
+                    color: Colors.white,
+                  ),
+                ],
+              )),
 
           ///adddd
           Container(
@@ -48,9 +37,9 @@ class Page2 extends StatelessWidget {
               children: [
                 //bellow
                 Container(
-                  color: Color.fromARGB(255, 12, 64, 106),
+                  color: Color.fromARGB(255, 234, 206, 176),
                   child: Container(
-                    padding: EdgeInsets.all(15),
+                    padding: EdgeInsets.fromLTRB(15, 20, 15, 15),
                     //height: 200,
                     decoration: BoxDecoration(
                         color: Colors.white,
@@ -70,8 +59,8 @@ class Page2 extends StatelessWidget {
                                 //   color: Colors.yellow,
                                 borderRadius: BorderRadius.circular(10),
                                 image: DecorationImage(
-                                    image: AssetImage("images/image3.jpg"),
-                                    fit: BoxFit.cover)),
+                                    image: AssetImage("images/dom.jpg"),
+                                    fit: BoxFit.fill)),
                             margin: EdgeInsets.only(right: 10),
                           ),
                           //text macdon
@@ -79,9 +68,9 @@ class Page2 extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "MC Donalds",
+                                "Dominos",
                                 style: TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.bold),
+                                    fontSize: 22, fontWeight: FontWeight.bold),
                               ),
                               Text(
                                 " American culstant that food",
@@ -104,7 +93,7 @@ class Page2 extends StatelessWidget {
                       Row(
                         children: [
                           Text(
-                            "daily tyt: ",
+                            "Open at: ",
                             style: TextStyle(
                                 color: Colors.grey,
                                 fontWeight: FontWeight.bold),
@@ -158,7 +147,7 @@ class Page2 extends StatelessWidget {
                   height: 80,
                   width: MediaQuery.of(context).size.width - 20,
                   decoration: BoxDecoration(
-                      color: Colors.orange,
+                      color: Color.fromARGB(255, 243, 110, 33),
                       borderRadius: BorderRadius.circular(10)),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -180,23 +169,23 @@ class Page2 extends StatelessWidget {
 
                 //menu Other
                 Container(
-                  margin: EdgeInsets.only(left: 30),
+                  margin: EdgeInsets.only(left: 20),
                   padding: EdgeInsets.only(left: 20),
                   height: 60,
                   decoration: BoxDecoration(
-                      color: Colors.orange[50],
+                      color: Color.fromARGB(255, 255, 236, 205),
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(30),
                           bottomLeft: Radius.circular(30))),
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: menu.length,
+                    itemCount: comp.menu.length,
                     itemBuilder: (BuildContext context, int index) {
                       return Center(
                           child: Row(
                         children: [
                           Text(
-                            "${menu[index]["name"]}",
+                            "${comp.menu[index]["name"]}",
                             style: TextStyle(color: Colors.grey[600]),
                           ),
                           SizedBox(
@@ -212,13 +201,13 @@ class Page2 extends StatelessWidget {
                   height: 300,
                   child: ListView.builder(
                     //scrollDirection: Axis.horizontal,
-                    itemCount: 8,
+                    itemCount: comp.listTileItem.length,
                     itemBuilder: (BuildContext context, int index) {
                       return Container(
                         width: 420,
                         // height: 60,
                         margin: EdgeInsets.only(
-                            left: 10, right: 10, top: 1, bottom: 10),
+                            left: 20, right: 10, top: 1, bottom: 10),
                         //   height: 65,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
@@ -233,13 +222,12 @@ class Page2 extends StatelessWidget {
                           title: Row(
                             children: [
                               Container(
-                                height: 80,
-                                width: 80,
+                                height: 70,
+                                width: 85,
                                 decoration: BoxDecoration(
                                   image: DecorationImage(
                                       image: AssetImage(
-                                        "images/image3.jpg",
-                                      ),
+                                          "${comp.listTileItem[index]["images"]}"),
                                       fit: BoxFit.cover),
                                   color: Colors.red,
                                   borderRadius: BorderRadius.circular(12),
@@ -251,13 +239,13 @@ class Page2 extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      "Item Name",
+                                      "${comp.listTileItem[index]["name"]}",
                                       style: TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold),
                                     ),
                                     Text(
-                                      "this Item for Sandwich form Macdonalds ",
+                                      "${comp.listTileItem[index]["ItemCommit"]}",
                                       style: TextStyle(
                                           fontSize: 15,
                                           fontWeight: FontWeight.w800,
@@ -266,7 +254,7 @@ class Page2 extends StatelessWidget {
                                     Row(
                                       children: [
                                         Text(
-                                          "\$5.55",
+                                          "${comp.listTileItem[index]["newprice"]}",
                                           style: TextStyle(
                                               fontSize: 18,
                                               fontWeight: FontWeight.bold),
@@ -275,7 +263,7 @@ class Page2 extends StatelessWidget {
                                           width: 20,
                                         ),
                                         Text(
-                                          "\$6.7",
+                                          "${comp.listTileItem[index]["oldprice"]}",
                                           style: TextStyle(
                                               decoration:
                                                   TextDecoration.lineThrough,
@@ -309,21 +297,6 @@ class Page2 extends StatelessWidget {
                           ),
                         ),
                       );
-
-                      ///aaaa
-                      // Container(
-                      //   decoration: BoxDecoration(
-                      //       color: Colors.cyan,
-                      //       borderRadius: BorderRadius.circular(20)),
-                      //   margin: EdgeInsets.all(10),
-                      //   // padding: EdgeInsets.all(15),
-                      //   width: 420,
-                      //   child: Image.asset(
-                      //     "images/f.jpg",
-                      //     fit: BoxFit.cover,
-                      //   ),
-                      // );
-                      ///aaa
                     },
                   ),
                 ),

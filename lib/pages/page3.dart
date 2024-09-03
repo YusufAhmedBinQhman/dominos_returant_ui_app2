@@ -1,25 +1,9 @@
+import 'package:dominos_returant_ui_app2/model/component.dart';
 import 'package:flutter/material.dart';
 
 class Page3 extends StatelessWidget {
-  List<dynamic> menu = [
-    {"name": "Other"},
-    {"name": "Pizza"},
-    {"name": "Cheken"},
-    {"name": "Rice"},
-    {"name": "Juice"},
-    {"name": "Other"},
-    {"name": "Rice"},
-    {"name": "Juice"},
-    {"name": "Other"},
-  ];
+  Component comp = Component();
 
-  ///
-  List<dynamic> image = [
-    {"images": "images/image3.jpg"},
-    // {"images": "images/image4.jpg"},
-    // {"images": "images/image4.jpg"},
-    // {"images": "images/image4.jpg"},
-  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,15 +13,39 @@ class Page3 extends StatelessWidget {
         children: [
           //image
           Container(
-            //bachground
-            color: const Color.fromARGB(255, 12, 64, 106),
-            height: 320,
+            height: 380,
             width: MediaQuery.of(context).size.width,
-            // decoration: BoxDecoration(
-            //     image: DecorationImage(image: AssetImage("images/image3.jpg"))),
-            child: Image.asset(
-              "images/image3.jpg",
-              fit: BoxFit.fill,
+            padding: EdgeInsets.all(15),
+            decoration: BoxDecoration(
+                color: const Color.fromARGB(255, 12, 64, 106),
+                //   color: Colors.yellow,
+                image: DecorationImage(
+                    image: AssetImage("images/page3.jpg"), fit: BoxFit.fill)),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 20),
+                Icon(
+                  Icons.keyboard_arrow_left,
+                  size: 40,
+                  color: Colors.white,
+                ),
+                SizedBox(height: 40),
+                Text(
+                  "Maga Deal",
+                  style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  "Get Maga dears here",
+                  style: TextStyle(fontSize: 15, color: Colors.white),
+                )
+              ],
             ),
           ),
 
@@ -48,55 +56,62 @@ class Page3 extends StatelessWidget {
               children: [
                 //bellow
                 Container(
-                  color: Color.fromARGB(255, 12, 64, 106),
+                  color: Color.fromARGB(255, 197, 24, 12),
                   child: Container(
-                    padding: EdgeInsets.all(15),
+                    padding: EdgeInsets.fromLTRB(15, 20, 15, 15),
                     //height: 200,
                     decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(20),
                             topRight: Radius.circular(20))),
-                    child: Column(children: [
-                      //icon loca
-                      SizedBox(height: 10),
-                    ]),
                   ),
                 ),
+                //rectangular Orange
                 Container(
-                  margin: EdgeInsets.only(left: 20, right: 20, bottom: 20),
+                  margin: EdgeInsets.only(left: 20, right: 20, bottom: 15),
+                  padding:
+                      EdgeInsets.only(left: 20, right: 10, top: 20, bottom: 20),
                   height: 80,
                   width: MediaQuery.of(context).size.width - 20,
                   decoration: BoxDecoration(
-                      color: Colors.orange,
+                      color: Color.fromARGB(255, 243, 110, 33),
                       borderRadius: BorderRadius.circular(10)),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Icon(Icons.question_mark),
-                      Text(
-                        "Compagin info",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold),
+                      Icon(
+                        Icons.info_outline,
+                        color: Colors.white,
                       ),
+                      SizedBox(width: 10),
+                      Text("Campaign info",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold)),
+                      Spacer(flex: 10),
+                      Text("Click here",
+                          style: TextStyle(color: Colors.white, fontSize: 12)),
+                      Spacer(
+                        flex: 1,
+                      ),
+                      Icon(Icons.arrow_right_alt_outlined, color: Colors.white)
                     ],
                   ),
                 ),
-
                 //list
                 Container(
                   height: 300,
                   child: ListView.builder(
                     //scrollDirection: Axis.horizontal,
-                    itemCount: 8,
+                    itemCount: comp.listTileItem.length,
                     itemBuilder: (BuildContext context, int index) {
                       return Container(
                         width: 420,
                         // height: 60,
                         margin: EdgeInsets.only(
-                            left: 10, right: 10, top: 1, bottom: 10),
+                            left: 20, right: 15, top: 1, bottom: 10),
                         //   height: 65,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
@@ -111,13 +126,12 @@ class Page3 extends StatelessWidget {
                           title: Row(
                             children: [
                               Container(
-                                height: 80,
-                                width: 80,
+                                height: 75,
+                                width: 90,
                                 decoration: BoxDecoration(
                                   image: DecorationImage(
                                       image: AssetImage(
-                                        "images/image3.jpg",
-                                      ),
+                                          "${comp.listTileItem[index]["images"]}"),
                                       fit: BoxFit.cover),
                                   color: Colors.red,
                                   borderRadius: BorderRadius.circular(12),
@@ -129,13 +143,13 @@ class Page3 extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      "Item Name",
+                                      "${comp.listTileItem[index]["name"]}",
                                       style: TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold),
                                     ),
                                     Text(
-                                      "this Item for Sandwich form Macdonalds ",
+                                      "${comp.listTileItem[index]["ItemCommit"]}",
                                       style: TextStyle(
                                           fontSize: 15,
                                           fontWeight: FontWeight.w800,
@@ -143,23 +157,48 @@ class Page3 extends StatelessWidget {
                                     ),
                                     Row(
                                       children: [
-                                        Text(
-                                          "\$5.55",
-                                          style: TextStyle(
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.bold),
+                                        Icon(
+                                          Icons.star,
+                                          color:
+                                              Color.fromARGB(255, 243, 110, 33),
+                                          size: 18,
+                                        ),
+                                        Icon(
+                                          Icons.star,
+                                          color:
+                                              Color.fromARGB(255, 243, 110, 33),
+                                          size: 18,
+                                        ),
+                                        Icon(
+                                          Icons.star,
+                                          color:
+                                              Color.fromARGB(255, 243, 110, 33),
+                                          size: 18,
+                                        ),
+                                        Icon(
+                                          Icons.star,
+                                          color:
+                                              Color.fromARGB(255, 243, 110, 33),
+                                          size: 18,
+                                        ),
+                                        Icon(
+                                          Icons.star,
+                                          color:
+                                              Color.fromARGB(255, 243, 110, 33),
+                                          size: 18,
                                         ),
                                         SizedBox(
-                                          width: 20,
+                                          width: 15,
                                         ),
-                                        Text(
-                                          "\$6.7",
-                                          style: TextStyle(
-                                              decoration:
-                                                  TextDecoration.lineThrough,
-                                              color: Colors.grey,
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.bold),
+                                        Icon(
+                                          Icons.share_arrival_time,
+                                          color: Colors.grey,
+                                          size: 18,
+                                        ),
+                                        Icon(
+                                          Icons.send_outlined,
+                                          color: Colors.grey,
+                                          size: 18,
                                         ),
                                       ],
                                     ),
@@ -171,16 +210,13 @@ class Page3 extends StatelessWidget {
                               Column(
                                 children: [
                                   Icon(
-                                    Icons.favorite_border_outlined,
-                                    size: 30,
+                                    Icons.favorite,
+                                    size: 20,
+                                    color: Color.fromARGB(255, 243, 110, 33),
                                   ),
                                   SizedBox(
                                     height: 15,
                                   ),
-                                  Icon(
-                                    Icons.add,
-                                    size: 30,
-                                  )
                                 ],
                               ),
                             ],
